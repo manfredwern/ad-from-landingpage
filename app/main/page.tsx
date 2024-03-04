@@ -36,9 +36,11 @@ export default function Main() {
     getContentHtmlApi(formData);
   };
 
+  const API_ENDPOINT = `${process.env.NEXT_PUBLIC_API_ENDPOINT}`;
+
   const getContentHtmlApi = async (formData: FormData) => {
     const postBody = JSON.stringify(formData);
-    const result = await fetch('http://localhost:3000/api/get-html', {
+    const result = await fetch(API_ENDPOINT + '/get-html', {
       method: 'POST',
       body: postBody
     });
