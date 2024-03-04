@@ -64,3 +64,8 @@ export const convertToCamelCase = (input: string): string => {
   // Join the parts back together and return
   return camelCaseParts.join('');
 };
+
+export const getImageExtension = (imageUrl: string): string => {
+  const originalExtension = imageUrl.match(/\.(png|jpg|jpeg|gif|svg|webp)$/i);
+  return originalExtension ? originalExtension[1] : '';
+};
