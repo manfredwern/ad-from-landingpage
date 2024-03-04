@@ -4,8 +4,9 @@ import Input from '@/app/components/Input/Input';
 import { useState } from 'react';
 import Button from '../components/Button/Button';
 import Card from '../components/Card/Card';
-import { VercelEnv } from '../interfaces/vercel';
+import { apiEndpoint } from '../utils/apiHelper';
 import { HTMLMetadata, parseHTML, parseMetadata } from '../utils/htmlParser';
+import AdDownload from './AdDownload';
 import AdPreview from './AdPreview';
 import Loading from './loading';
 
@@ -14,10 +15,6 @@ interface FormData {
 }
 
 export default function Main() {
-  // Allow endpoint to work on feature branch
-  const mode = `${process.env.NEXT_PUBLIC_VERCEL_ENV}` as VercelEnv;
-  const API_ENDPOINT = mode === 'preview' ? `https://${process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL}/api` : `${process.env.NEXT_PUBLIC_API_ENDPOINT}`;
-
   const [formData, setFormData] = useState<FormData>({
     url: ''
   });
@@ -36,14 +33,13 @@ export default function Main() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle form submission here, e.g., send data to backend
-    console.log(formData);
     setLoading(true);
     getContentHtmlApi(formData);
   };
 
   const getContentHtmlApi = async (formData: FormData) => {
     const postBody = JSON.stringify(formData);
-    const result = await fetch(API_ENDPOINT + '/get-html', {
+    const result = await fetch(apiEndpoint() + '/get-html', {
       method: 'POST',
       body: postBody
     });
@@ -53,11 +49,8 @@ export default function Main() {
     const metadata: HTMLMetadata | null = parseHTML(htmlString);
 
     if (metadata) {
-      console.log(metadata.title);
-      console.log(metadata.meta);
       if (metadata.meta) {
         // Process metadata to get only necessary properties
-        // console.log('parsing ', parseMetadata(metadata.meta));
         setMetadata(metadata.meta);
       }
     }
@@ -65,7 +58,7 @@ export default function Main() {
   };
 
   return (
-    <div className="gap- flex flex-col gap-7">
+    <div className="flex flex-col gap-7">
       <h1 className="text-center text-xl">Create a Display Ad for your Landing page.</h1>
 
       <form onSubmit={handleSubmit}>
@@ -81,7 +74,16 @@ export default function Main() {
             <Loading />
           </Card>
         )}
-        {metadata && !loading && <AdPreview data={parseMetadata(metadata)}></AdPreview>}
+        {metadata && !loading && (
+          <>
+            <AdPreview data={parseMetadata(metadata)}></AdPreview>
+          </>
+        )}
+        {/* <AdPreview data={d}></AdPreview> */}
+      </div>
+      <div>
+        {/* <AdDownload metadata={d}></AdDownload> */}
+        {metadata && <AdDownload metadata={parseMetadata(metadata)}></AdDownload>}
       </div>
     </div>
   );
