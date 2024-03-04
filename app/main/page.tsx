@@ -4,6 +4,7 @@ import Input from '@/app/components/Input/Input';
 import { useState } from 'react';
 import Button from '../components/Button/Button';
 import Card from '../components/Card/Card';
+import { VercelEnv } from '../interfaces/vercel';
 import { HTMLMetadata, parseHTML, parseMetadata } from '../utils/htmlParser';
 import AdPreview from './AdPreview';
 import Loading from './loading';
@@ -13,6 +14,10 @@ interface FormData {
 }
 
 export default function Main() {
+  // Allow endpoint to work on feature branch
+  const mode = `${process.env.NEXT_PUBLIC_VERCEL_ENV}` as VercelEnv;
+  const API_ENDPOINT = mode === 'preview' ? `https://${process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL}/api` : `${process.env.NEXT_PUBLIC_API_ENDPOINT}`;
+
   const [formData, setFormData] = useState<FormData>({
     url: ''
   });
@@ -35,10 +40,6 @@ export default function Main() {
     setLoading(true);
     getContentHtmlApi(formData);
   };
-
-  const mode = `${process.env.NEXT_PUBLIC_VERCEL_ENV}`;
-  const API_ENDPOINT = mode === 'preview' ? `https://${process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL}/api` : `${process.env.NEXT_PUBLIC_API_ENDPOINT}`;
-  console.log('ENDPOINT', API_ENDPOINT);
 
   const getContentHtmlApi = async (formData: FormData) => {
     const postBody = JSON.stringify(formData);
@@ -63,14 +64,12 @@ export default function Main() {
     setLoading(false);
   };
 
-  const initValue = 'https://www.merkur.de/sport/wintersport/boesch-ruecktritt-comeback-ski-ass-kampf-kindheit-traum-92864908.html';
-
   return (
     <div className="gap- flex flex-col gap-7">
-      <h1 className="text-center text-xl">Create a Display Ad for you Landing page.</h1>
+      <h1 className="text-center text-xl">Create a Display Ad for your Landing page.</h1>
 
       <form onSubmit={handleSubmit}>
-        <Input type="text" name="url" onChange={handleChange} placeholder="Website URL" label="URL" required></Input>
+        <Input type="text" name="url" onChange={handleChange} placeholder="Enter a Landing page URL" label="Landing Page" required></Input>
         <Button type="submit" disabled={!formData.url}>
           Generate preview
         </Button>

@@ -38,7 +38,7 @@ export const parseMetadata = (metadata: { [key: string]: string }[]): Metadata =
 
   metadata.forEach(metaElement => {
     let prop = (metaElement.name || metaElement.property)?.replace(/^(\w+):/, '');
-    console.log('prop: ', prop);
+
     if (metaProperties.includes(prop)) {
       prop = convertToCamelCase(prop);
       data[prop as keyof Metadata] = metaElement.content;
