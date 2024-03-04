@@ -37,7 +37,7 @@ export default function Main() {
   };
 
   const mode = `${process.env.NEXT_PUBLIC_VERCEL_ENV}`;
-  const API_ENDPOINT = mode === 'preview' ? `${process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL}` : `${process.env.NEXT_PUBLIC_API_ENDPOINT}`;
+  const API_ENDPOINT = mode === 'preview' ? `https://${process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL}` : `${process.env.NEXT_PUBLIC_API_ENDPOINT}`;
 
   const getContentHtmlApi = async (formData: FormData) => {
     const postBody = JSON.stringify(formData);
