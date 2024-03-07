@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Card from '../components/Card/Card';
-import { apiEndpoint } from '../utils/apiHelper';
 import { HTMLMetadata, parseHTML, parseMetadata } from '../utils/htmlParser';
 import AdDownload from './AdDownload';
 import AdPreview from './AdPreview';
@@ -26,7 +25,7 @@ export default function Main() {
   const getContentHtmlApi = async (formData: FormData): Promise<void> => {
     try {
       const postBody = JSON.stringify(formData);
-      const result = await fetch(apiEndpoint() + '/get-html', {
+      const result = await fetch('/api/get-html', {
         method: 'POST',
         body: postBody
       });

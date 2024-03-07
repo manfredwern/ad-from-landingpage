@@ -1,6 +1,5 @@
 import { Metadata } from '@/interfaces';
 import React from 'react';
-import { apiEndpoint } from '../utils/apiHelper';
 
 interface AdDownloadProps {
   metadata: Metadata;
@@ -9,7 +8,7 @@ interface AdDownloadProps {
 const AdDownload: React.FC<AdDownloadProps> = ({ metadata }) => {
   const handleDownload = async () => {
     try {
-      const res = await fetch(apiEndpoint() + '/html-to-zip', {
+      const res = await fetch('/api/html-to-zip', {
         method: 'POST',
         body: JSON.stringify(metadata)
       });
