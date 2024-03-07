@@ -1,6 +1,6 @@
-import { FormData, HTMLMetadata, Metadata } from '@/app/interfaces';
-import { parseHTML, parseMetadata } from '@/app/utils/htmlParser';
 import Input from '@/components/Input/Input';
+import { FormData, HTMLMetadata, Metadata } from '@/interfaces';
+import { parseHTML, parseMetadata } from '@/utils/htmlParser';
 import React, { useState } from 'react';
 import Button from '../../components/Button/Button';
 import { isValidURL } from '../../utils/validatorHelper';
