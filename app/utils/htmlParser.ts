@@ -10,7 +10,7 @@ export const parseHTML = (htmlString: string): HTMLMetadata | null => {
 
   const titleElement = doc.querySelector('title');
   const title = titleElement?.textContent;
-  console.log('title', doc);
+
   const metaElements = doc.querySelectorAll('meta');
   const meta: { [key: string]: string }[] = [];
   metaElements.forEach(metaElement => {

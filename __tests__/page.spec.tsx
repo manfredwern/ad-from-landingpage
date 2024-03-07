@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import Main from './page';
+import Main from '../app/main/page';
 
 describe('Main component', () => {
   it('should render the title correctly', () => {

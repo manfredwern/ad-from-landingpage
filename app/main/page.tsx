@@ -3,8 +3,8 @@
 import { Metadata } from '@/interfaces';
 import { useState } from 'react';
 import Card from '../components/Card/Card';
-import AdDownload from './components/AdDownload';
-import AdPreview from './components/AdPreview';
+import AdDownload from './components/ad-download';
+import AdPreview from './components/ad-preview';
 import Form from './components/form';
 import Loading from './loading';
 
