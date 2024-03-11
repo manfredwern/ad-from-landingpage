@@ -48,10 +48,9 @@ const Form: React.FC<FormProps> = ({ onSubmit, isLoading, hasError }) => {
         throw new Error('Failed to parse metadata');
       }
     } catch (error) {
-      console.error('Error fetching HTML content:', error);
+      // console.error('Error fetching HTML content:', error);
       hasError((error as any).message as string);
       onSubmit(null);
-      // Handle error state or display error message to the user
     } finally {
       isLoading(false);
     }
