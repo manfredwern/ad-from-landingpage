@@ -8,7 +8,7 @@ interface Input extends InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string | null;
 }
 
-const Input: React.FC<Input> = ({ type = 'text', label, errorMessage, ...props }) => {
+export const Input: React.FC<Input> = ({ type = 'text', label, errorMessage, ...props }) => {
   return (
     <div className="mb-4">
       <label>
@@ -19,5 +19,3 @@ const Input: React.FC<Input> = ({ type = 'text', label, errorMessage, ...props }
     </div>
   );
 };
-
-export default Input;

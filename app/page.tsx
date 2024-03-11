@@ -1,3 +1,4 @@
+import { Button } from '@/components';
 import Link from 'next/link';
 
 export default function Home() {
@@ -7,7 +8,7 @@ export default function Home() {
         <h1 className="mb-6 text-center text-4xl font-bold">Adify: Ad Creation Made Easy</h1>
         <p className="mb-8 text-center text-lg">Transform Landing Pages into Eye-Catching Ads</p>
         <Link href="/main">
-          <span className="rounded-lg bg-blue-500 px-6 py-3 text-white shadow-md transition duration-300 hover:bg-blue-600">Get Started</span>
+          <Button className="rounded-lg px-6 py-3 font-normal shadow-md">Get Stared</Button>
         </Link>
       </div>
     </main>

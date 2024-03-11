@@ -1,9 +1,8 @@
-import Input from '@/components/Input/Input';
+import { Button, Input } from '@/components';
 import { FormData, HTMLMetadata, Metadata } from '@/interfaces';
 import { parseHTML, parseMetadata } from '@/utils/htmlParser';
+import { isValidURL } from '@/utils/validatorHelper';
 import React, { useState } from 'react';
-import Button from '../../components/Button/Button';
-import { isValidURL } from '../../utils/validatorHelper';
 
 interface FormProps {
   onSubmit: (metadata: Metadata | null) => void;
