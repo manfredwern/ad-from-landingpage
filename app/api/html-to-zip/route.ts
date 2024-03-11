@@ -1,6 +1,6 @@
-import { Metadata } from '@/app/interfaces';
-import { getImageExtension } from '@/app/utils/htmlParser';
-import { indexHtmlMarkup } from '@/app/utils/htmlTemplate';
+import { Metadata } from '@/interfaces';
+import { getImageExtension } from '@/utils/htmlParser';
+import { indexHtmlMarkup } from '@/utils/htmlTemplate';
 import JSZip from 'jszip';
 
 export async function POST(request: Request): Promise<Response> {

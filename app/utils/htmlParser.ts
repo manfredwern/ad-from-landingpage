@@ -1,10 +1,4 @@
-import { Metadata } from '@/interfaces';
-
-export interface HTMLMetadata {
-  title?: string | null;
-  meta?: { [key: string]: string }[];
-  // Add more metadata properties as needed
-}
+import { HTMLMetadata, HTMLMetadataEntry, Metadata } from '@/interfaces';
 
 export const parseHTML = (htmlString: string): HTMLMetadata | null => {
   const parser = new DOMParser();
@@ -16,7 +10,7 @@ export const parseHTML = (htmlString: string): HTMLMetadata | null => {
 
   const titleElement = doc.querySelector('title');
   const title = titleElement?.textContent;
-  console.log('title', doc);
+
   const metaElements = doc.querySelectorAll('meta');
   const meta: { [key: string]: string }[] = [];
   metaElements.forEach(metaElement => {
@@ -32,7 +26,7 @@ export const parseHTML = (htmlString: string): HTMLMetadata | null => {
   return { title, meta };
 };
 
-export const parseMetadata = (metadata: { [key: string]: string }[]): Metadata => {
+export const parseMetadata = (metadata: HTMLMetadataEntry[]): Metadata => {
   let data = {} as Metadata;
   const metaProperties = ['url', 'title', 'image', 'description', 'type', 'image:alt', 'site_name'];
 
