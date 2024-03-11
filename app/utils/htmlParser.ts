@@ -60,6 +60,6 @@ export const convertToCamelCase = (input: string): string => {
 };
 
 export const getImageExtension = (imageUrl: string): string => {
-  const originalExtension = imageUrl.match(/\.(png|jpg|jpeg|gif|svg|webp)$/i);
+  const originalExtension = RegExp(/\.(png|jpg|jpeg|gif|svg|webp)$/i).exec(imageUrl);
   return originalExtension ? originalExtension[1] : '';
 };

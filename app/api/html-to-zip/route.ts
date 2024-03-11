@@ -17,7 +17,6 @@ export async function POST(request: Request): Promise<Response> {
     const imageResponse = await fetch(encodeURI(image), { cache: 'no-store' });
     if (imageResponse.ok) {
       const imageBlob = await imageResponse.blob();
-      //   const contentType = imageResponse.headers.get('content-type');
       zip.file(`ad-image.${getImageExtension(image)}`, imageBlob.arrayBuffer());
     }
   } catch (error) {}

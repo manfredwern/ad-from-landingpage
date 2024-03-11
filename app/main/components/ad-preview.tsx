@@ -1,6 +1,6 @@
+import { Card } from '@/components';
 import { Metadata } from '@/interfaces';
 import React from 'react';
-import Card from '../../components/Card/Card';
 
 interface AdPreviewProps {
   metadata: Metadata;
