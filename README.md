@@ -12,7 +12,7 @@ The application enables users to generate basic display ads from landing page UR
 - Click on 'Generate Preview' to initiate the ad creation process.
 - Ensure that the landing page contains essential metadata such as title, description, image, and brand information.
 
-## Technology stach
+## Technology stack
 
 - Next.js: A React framework used for server-side rendering and building optimized web applications.
 - Vercel: A cloud platform for deploying Next.js applications with seamless integration and rapid deployment capabilities.
