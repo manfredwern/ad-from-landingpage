@@ -2,11 +2,7 @@ import { Card } from '@/components';
 import { Metadata } from '@/interfaces';
 import React from 'react';
 
-interface AdPreviewProps {
-  metadata: Metadata;
-}
-
-const AdPreview: React.FC<AdPreviewProps> = ({ metadata }) => {
+const AdPreview: React.FC<{ metadata: Metadata }> = ({ metadata }) => {
   return (
     <Card className="mt-4 w-80">
       <div className="relative">
