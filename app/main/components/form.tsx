@@ -10,9 +10,11 @@ interface FormProps {
   hasError: (error: string | null) => void;
 }
 
+const DEMO_URL = 'https://www.freenet.de/auto/neuheiten/mclaren-artura-spider-mehr-power-mehr-sound-weniger-dach-40480454.html';
+
 const Form: React.FC<FormProps> = ({ onSubmit, isLoading, hasError }) => {
   const [formData, setFormData] = useState<FormData>({
-    url: ''
+    url: DEMO_URL
   });
 
   const [error, setError] = useState<string | null>(null);
@@ -60,7 +62,6 @@ const Form: React.FC<FormProps> = ({ onSubmit, isLoading, hasError }) => {
 
     if (!isValidURL(url)) {
       setError('Please enter a valid URL.');
-      return;
     }
 
     if (error && isValidURL(url)) {
@@ -73,12 +74,35 @@ const Form: React.FC<FormProps> = ({ onSubmit, isLoading, hasError }) => {
     }));
   };
 
+  const handleResetForm = () => {
+    setFormData({ url: '' });
+    onSubmit(null);
+    hasError(null);
+    setError(null);
+    document.getElementById('input-url')?.focus;
+  };
+
   return (
     <form onSubmit={handleSubmit}>
-      <Input type="text" name="url" onChange={handleChange} placeholder="Enter a Landing page URL" label="Landing Page" errorMessage={error} required></Input>
-      <Button type="submit" disabled={!formData.url || !!error}>
-        Generate preview
-      </Button>
+      <Input
+        type="text"
+        name="url"
+        id="input-url"
+        value={formData.url}
+        onChange={handleChange}
+        placeholder="Enter URL"
+        label="Landing Page URL"
+        errorMessage={error}
+        required
+      ></Input>
+      <div className="flex flex-row justify-between">
+        <Button type="submit" disabled={!formData.url || !!error}>
+          Generate preview
+        </Button>
+        <Button type="button" onClick={handleResetForm}>
+          Reset form
+        </Button>
+      </div>
     </form>
   );
 };

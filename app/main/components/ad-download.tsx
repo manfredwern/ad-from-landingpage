@@ -2,11 +2,7 @@ import { Button } from '@/components';
 import { Metadata } from '@/interfaces';
 import React from 'react';
 
-interface AdDownloadProps {
-  metadata: Metadata;
-}
-
-const AdDownload: React.FC<AdDownloadProps> = ({ metadata }) => {
+const AdDownload: React.FC<{ metadata: Metadata }> = ({ metadata }) => {
   const handleDownload = async () => {
     try {
       const res = await fetch('/api/html-to-zip', {
@@ -38,7 +34,7 @@ const AdDownload: React.FC<AdDownloadProps> = ({ metadata }) => {
       <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 mt-1 inline-block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 8l5 5m0 0l5-5m-5 5V3"></path>
       </svg>
-      Download Preview
+      Download as HTML (zip)
     </Button>
   );
 };
